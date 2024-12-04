@@ -1,0 +1,9 @@
+<h1>Categories</h1>
+<ul>
+    {% for category in categories %}
+        <li>
+            <a href="{% url 'event_list' category.id %}">{{ category.name }}</a>
+            <p>{{ category.description }}</p>
+        </li>
+    {% endfor %}
+</ul>

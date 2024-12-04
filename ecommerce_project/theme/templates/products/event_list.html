@@ -1,0 +1,402 @@
+{% load static %}
+{% load static tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Sports Events - LETS DO THIS</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+ 
+   
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">LETS DO THIS</div>
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="search" class="search-bar" placeholder="Search by sport, event or location..." aria-label="Search events">
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="nav-links">
+                <a href="{% url 'index'%}">Home</a>
+                <a href="#">Race for charity</a>
+                <a href="#">About US</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <aside class="filters">
+            <form method="get" action="{% url 'event_list_view'  %}">
+
+                <div class="filter-section">
+                    <h3>Categories</h3>
+                    <div class="category-list">
+                        {% for category in categories %}
+                        <label class="category-item">
+                            <input type="checkbox" name="category" value="{{ category.id }}"
+                                {% if category.name in selected_categories %}checked{% endif %}>
+                            {{ category.name }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button type="submit" class="apply-filters-btn">Apply Filters</button>
+            </form>
+        </aside>
+
+        <section class="events-section">
+            <h1>Adventure Sports Events in United Kingdom 2024-2025</h1>
+            <p>Discover thrilling adventures and push your limits with our curated selection of adventure sports events.</p>
+
+            <div class="category-filters">
+                {% for category in categories|slice:":4" %}
+                <div class="category-card">
+                    
+                    <h3>{{ category.name }}</h3>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="events-grid">
+                {% for event in events %}
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">{{ event.date|date:"d" }}</span>
+                        <span class="month">{{ event.date|date:"M" }}</span>
+                    </div>
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                    <div class="event-info">
+                        <h3>{{ event.title }}</h3>
+                        <p>{{ event.location }}</p>
+                        <p>{{ event.date|date:"D jS M Y" }}</p>
+                        <p><a href="{% url 'event_detail' event.id %}" class="inline-block px-6 py-2 text-sm font-medium leading-6 text-center text-white uppercase transition bg-gradient-to-r from-custom-pink to-custom-blue rounded-full shadow ripple hover:shadow-lg hover:from-custom-blue hover:to-custom-pink focus:outline-none">
+                            View Details
+                        </a></p>
+                        
+                    </div>
+                    
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+    
+        mobileMenuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+        });
+    });
+    
+</script>
+</body>
+</html>
+
+<style>
+    :root {
+        --primary-color: #0000ff;
+        --highlight-color: #ffff00;
+        --text-color: #333;
+        --background-color: #fff;
+        --gray-100: #f3f4f6;
+        --gray-200: #e5e7eb;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--gray-100);
+    }
+    
+    .header {
+        background-color: var(--highlight-color);
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+    
+    .logo {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    
+    .search-container {
+        flex-grow: 1;
+        max-width: 600px;
+        position: relative;
+    }
+    
+    .search-bar {
+        width: 100%;
+        padding: 0.75rem 1rem 0.75rem 2.5rem;
+        border-radius: 25px;
+        border: 1px solid #ddd;
+        font-size: 1rem;
+    }
+    
+    .search-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+    }
+    
+    .nav-links a {
+        text-decoration: none;
+        color: var(--text-color);
+    }
+    .main-content {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 2rem;
+    }
+    
+    .filters {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .filter-section {
+        margin-bottom: 1.5rem;
+    }
+    
+    .filter-section h3 {
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+    
+    .category-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .category-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .category-item input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .events-section h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .category-filters {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+    
+    .category-card {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    
+    .category-card:hover {
+        transform: translateY(-2px);
+    }
+    
+    .category-card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+    
+    .category-card h3 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        color: white;
+    }
+    
+    .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .event-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .event-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    
+    .event-info {
+        padding: 1rem;
+    }
+    
+    .event-date {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: white;
+        padding: 0.5rem;
+        border-radius: 4px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .event-date .day {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    
+    @media (max-width: 768px) {
+        .main-content {
+            grid-template-columns: 1fr;
+        }
+    
+        .nav-links {
+            display: none;
+        }
+        .search-container{
+            display: none;
+        }
+        
+    }
+    
+    .apply-filters-btn {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
+    .apply-filters-btn:hover {
+        background-color: #0000cc;
+    }
+    
+    .apply-filters-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(0, 0, 255, 0.5);
+    }
+
+    
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--highlight-color);
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+ 
+
+    .nav-container {
+       
+    }
+
+    .logo {
+        flex-basis: 50%;
+    }
+
+    .mobile-menu-toggle {
+        flex-basis: 50%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .search-container {
+        flex-basis: 100%;
+        order: 1;
+       
+    }
+}
+
+
+</style>

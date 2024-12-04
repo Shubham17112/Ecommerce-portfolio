@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ event.title }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .nav-btn {
+            background-color: #0066cc;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .nav-btn:hover {
+            background-color: #0052a3;
+        }
+        .hero-title {
+            background-color: #e6ff00;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .hero-title h1 {
+            font-size: 2.5rem;
+            color: #000;
+            font-weight: 900;
+        }
+        .image-gallery {
+            display: flex;
+            height: 500px;
+            position: relative;
+        }
+        .gallery-image {
+            flex: 1;
+            overflow: hidden;
+        }
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-image:nth-child(2) {
+            flex: 2;
+        }
+        .action-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            background: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .btn:hover {
+            background-color: #f0f0f0;
+        }
+        .gallery-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .attribution {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .about, .event-details, .whats-included, .register {
+            padding: 4rem 0;
+        }
+        .about h2, .event-details h2, .whats-included h2, .register h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .event-details {
+            background-color: #f9f9f9;
+        }
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .event-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .included-list {
+            list-style-type: none;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .included-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .included-list li::before {
+            content: '✓';
+            color: #0066cc;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .register {
+            background-color: #0066cc;
+            color: #fff;
+            text-align: center;
+        }
+        .register-btn {
+            display: inline-block;
+            background-color: #fff;
+            color: #0066cc;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .register-btn:hover {
+            background-color: #f0f0f0;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        @media (max-width: 768px) {
+            .hero-title h1 {
+                font-size: 2rem;
+            }
+            .image-gallery {
+                flex-direction: column;
+                height: auto;
+            }
+            .gallery-image {
+                height: 200px;
+            }
+            .event-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">{{ event.title }}</div>
+            <a href="#register" class="nav-btn">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-title">
+            <div class="container">
+                <h1>{{ event.title }}</h1>
+            </div>
+        </section>
+
+        <section class="image-gallery">
+            <div class="gallery-image">
+                <img src="{{ event_detail.image1.url }}" alt="{{ event.title }} Scene 1">
+            </div>
+            <div class="gallery-image">
+                <img src="{{ event_detail.image2.url }}" alt="{{ event.title }} Scene 2">
+            </div>
+            <div class="gallery-image">
+                <img src="{{ event_detail.image3.url }}" alt="{{ event.title }} Scene 3">
+            </div>
+            <div class="action-buttons">
+                <button class="btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    Save
+                </button>
+                <button class="btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                        <polyline points="16 6 12 2 8 6"></polyline>
+                        <line x1="12" y1="2" x2="12" y2="15"></line>
+                    </svg>
+                    Share
+                </button>
+            </div>
+            <div class="gallery-controls">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+                1 / 3
+            </div>
+        </section>
+
+        <div class="attribution">
+            By {{ event.title }} Events
+        </div>
+
+        <section class="about">
+            <div class="container">
+                <h2>About</h2>
+                {{ event_detail.description|safe }}
+            </div>
+        </section>
+
+        <section class="event-details">
+            <div class="container">
+                <h2>Event Details</h2>
+                <div class="event-grid">
+                    <div class="event-card">
+                        <h3>Distance</h3>
+                        <p>26.2 miles</p>
+                    </div>
+                    <div class="event-card">
+                        <h3>Location</h3>
+                        <p>{{ event.location }}</p>
+                    </div>
+                    <div class="event-card">
+                        <h3>Date</h3>
+                        <p>{{ event.date }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="whats-included">
+            <div class="container">
+                <h2>What's Included</h2>
+                <ul class="included-list">
+                    <li>Bespoke finisher's Medal</li>
+                    <li>Exclusive finisher's T-shirt</li>
+                    <li>Unrivalled oncourse music entertainment zones</li>
+                    <li>Incredible crowd support</li>
+                    <li>Pre-event training advice and motivation</li>
+                    <li>Oncourse hydration stations</li>
+                    <li>Chip-timed results</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="register" class="register">
+            <div class="container">
+                <h2>Register Now</h2>
+                <p>Join thousands of runners in the {{ event.title }}. Register today to secure your spot!</p>
+                <a href="#" class="register-btn">Register for the Event</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; {% now "Y" %} {{ event.title }}. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
