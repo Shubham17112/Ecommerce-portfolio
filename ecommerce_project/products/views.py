@@ -114,7 +114,7 @@ from .models import Event, EventDetail
 
 class EventDetailView(DetailView):
     model = Event
-    template_name = 'event_detail.html'
+    template_name = 'products/event_detail.html'
     context_object_name = 'event'
 
     def get_context_data(self, **kwargs):
@@ -122,3 +122,8 @@ class EventDetailView(DetailView):
         context['event_detail'] = EventDetail.objects.get(event=self.object)
         return context
 
+
+def aboutus(request):
+    return render(request,'products/about_us.html')
+def contactus(request):
+    return render(request,'products/contact_us.html')

@@ -11,6 +11,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Let's Do This - Sports Events Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Monotype+Corsiva&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Carlsol+Script&display=swap" rel="stylesheet">
+<!-- Example for Adobe Fonts -->
+<link rel="stylesheet" href="https://use.typekit.net/xxxxxx.css">
+<link href="https://fonts.googleapis.com/css2?family=Alegreya&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Carlson&display=swap" rel="stylesheet">
+<link href="https://example.com/path/to/mahacara-font.css" rel="stylesheet">
+
+
+
+
     <style>
         :root {
             --primary-yellow: #ffff00;
@@ -22,7 +33,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family:Carlson, system-ui, -apple-system, sans-serif;
         }
 
         body {
@@ -128,12 +139,15 @@
             }
 
             .hero-title {
-                font-size: 3rem;
+                font-family: 'Carlson', sans-serif; /* Using Carlson font */
+                font-size: 3rem; /* Font size of 3rem */
+                color: #ff4500; /* Sporty color (for example, orange/red) */
             }
             .hero-video video {
                 width: 100%;
                 height: auto;
                 object-fit: cover;
+
             }
           
         }
@@ -142,14 +156,22 @@
 
 
 
-    <main class="hero bg-white">
+    <main class="hero bg-amber-50">
         <h1 class="hero-title">
-            Moments<br>
-            <span class="hero-highlight">MAKE US</span>
-        </h1>
+        
+                UTSAHA
+         <br>
+            {% comment %} <span style="font-family: 'Alegreya', serif;" class="bg-red-400 text-gray-800">
+                Your Endurance <br/> & Adventure Market Place
+              </span> {% endcomment %}
+           
+              <span style="font-family: 'Alegreya', serif; background-color: #fEff9f;" class="text-red-600">
+                Your Endurance <br/> & Adventure Market Place
+              </span>
+              
+                </h1>
         <p class="hero-text">
-            Whether you run, cycle, swim, climb, or clamber... for the heat of the competition or fun with friends... Let's Do This will help you find, book and share your next momentous experience.
-        </p>
+            Whether you run, hike, ride, paddle, or climb… for the thrill of the challenge or the joy of discovery… Utsaha connects you to your next unforgettable adventure        </p>
         <div class="hero-video">
             <video autoplay loop muted class="w-full rounded-[0.5rem] h-auto object-cover ">
             <source src="{% static 'video.mp4' %}" type="video/mp4">

@@ -1,0 +1,174 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now - Mount Everest Base Camp Trek | Utasaha</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+          
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #062D1D;
+            color: white;
+            padding: 1rem 0;
+        }
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Main content styles */
+        main {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+            padding: 2rem;
+        }
+        h1 {
+            color: #062D1D;
+            margin-bottom: 1rem;
+        }
+        .adventure-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .adventure-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        .adventure-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .adventure-info {
+            flex: 2;
+            min-width: 300px;
+        }
+        .info-group {
+            margin-bottom: 1.5rem;
+        }
+        .info-group h2 {
+            color: #062D1D;
+            margin-bottom: 0.5rem;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #4CE6A6;
+            color: #062D1D;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+        }
+        .book-now {
+            background-color: #4CE6A6;
+            color: #062D1D;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .book-now:hover {
+            background-color: #062D1D;
+            color: white;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #062D1D;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .adventure-details {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <main class="container">
+        <h1>Mount Everest Base Camp Trek</h1>
+        <div class="adventure-details">
+            <div class="adventure-image">
+                <img src="https://i.insider.com/637806a5cbe4f80019bd4a13?width=1000&format=jpeg&auto=webp/600x400" alt="Mount Everest Base Camp">
+            </div>
+            <div class="adventure-info">
+                <div class="info-group">
+                    <h2>Overview</h2>
+                    <p><span class="badge">12 days</span> <span class="badge">Challenging</span></p>
+                    <p>Embark on a journey to the base of the world's highest peak. This 12-day trek takes you through stunning Himalayan landscapes, traditional Sherpa villages, and ultimately to the iconic Everest Base Camp.</p>
+                </div>
+                <div class="info-group">
+                    <h2>Trip Details</h2>
+                    <ul>
+                        <li>Start Date: April 15, 2024</li>
+                        <li>End Date: April 26, 2024</li>
+                        <li>Group Size: 8-12 people</li>
+                        <li>Price: $2,500 per person</li>
+                    </ul>
+                </div>
+                <div class="info-group">
+                    <h2>What's Included</h2>
+                    <ul>
+                        <li>Professional English-speaking guide</li>
+                        <li>Porters to carry your luggage</li>
+                        <li>Accommodation in tea houses/lodges</li>
+                        <li>All meals during the trek</li>
+                        <li>Necessary permits and fees</li>
+                        <li>Airport transfers in Kathmandu</li>
+                    </ul>
+                </div>
+                <button class="book-now">Book Now</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Utasaha. All rights reserved.</p>
+    </footer>
+</body>
+</html>

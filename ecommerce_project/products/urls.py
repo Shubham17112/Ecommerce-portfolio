@@ -10,7 +10,8 @@ urlpatterns = [
     path("products/event_list/", views.event_list, name="event_list"),
     path('events/', EventListView.as_view(), name='event_list_view'),
     path('events/<int:pk>/', EventDetailView.as_view(), name='event_detail'),
-
+    path('aboutus/',views.aboutus,name="aboutus"),
+      path('contactus/',views.contactus,name="contactus"),
     path('', index, name='index'),  # Home page
     path('thank_you/', views.thank_you, name='thank_you'),  # Optional "Thank You" page
     
