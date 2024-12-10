@@ -28,7 +28,6 @@ SECRET_KEY = 'django-insecure-x%wga(r=bd_xtxl@&e7lw(a$x=($nol0d$kmw)vi2r=eqh=75^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -155,3 +154,6 @@ MIDDLEWARE += [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
+# api/settings.py
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+WSGI_APPLICATION = 'api.wsgi.app'
